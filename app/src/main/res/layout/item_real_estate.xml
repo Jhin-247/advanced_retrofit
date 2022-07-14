@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="property"
+            type="com.example.retrofitassignment.network.MarsProperty" />
+    </data>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="4dp">
+
+        <ImageView
+            image="@{property.imgSrcUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:background="@drawable/ic_broken_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:text="@{property.type}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="@{property.visibility()}" />
+
+    </RelativeLayout>
+</layout>
