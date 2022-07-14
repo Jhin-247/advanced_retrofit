@@ -20,13 +20,14 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<List<MarsProperty>> mProperties = new MutableLiveData<>();
 
     private MarsProperty mChosenProperty;
+    private Call<List<MarsProperty>> mDataCall;
 
     public String getCurrentPropertyImage() {
         return mChosenProperty.getImgSrcUrl();
     }
 
     public String getCurrentPropertyPrice() {
-        return String.valueOf(mChosenProperty.getPrice());
+        return "Price: " + mChosenProperty.getPrice();
     }
 
     public String getType() {
@@ -43,33 +44,29 @@ public class MainViewModel extends ViewModel {
 
     public void searchData(String filter) {
         if (TextUtils.isEmpty(filter)) {
-            RetrofitClient.getInstance().getService().getProperties().enqueue(new Callback<List<MarsProperty>>() {
-                @Override
-                public void onResponse(@NonNull Call<List<MarsProperty>> call, @NonNull Response<List<MarsProperty>> response) {
-                    if (response.isSuccessful() && response.body() != null) {
-                        mProperties.setValue(response.body());
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<List<MarsProperty>> call, @NonNull Throwable t) {
-                    t.printStackTrace();
-                }
-            });
+            mDataCall = RetrofitClient.getInstance().getService().getProperties();
         } else {
-            RetrofitClient.getInstance().getService().getPropertiesByType(filter).enqueue(new Callback<List<MarsProperty>>() {
-                @Override
-                public void onResponse(@NonNull Call<List<MarsProperty>> call, @NonNull Response<List<MarsProperty>> response) {
-                    if (response.isSuccessful() && response.body() != null) {
-                        mProperties.setValue(response.body());
-                    }
+            mDataCall = RetrofitClient.getInstance().getService().getPropertiesByType(filter);
+        }
+        mDataCall.enqueue(new Callback<List<MarsProperty>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<MarsProperty>> call, @NonNull Response<List<MarsProperty>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    mProperties.setValue(response.body());
                 }
+            }
 
-                @Override
-                public void onFailure(@NonNull Call<List<MarsProperty>> call, @NonNull Throwable t) {
-                    t.printStackTrace();
-                }
-            });
+            @Override
+            public void onFailure(@NonNull Call<List<MarsProperty>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public void cancelRequest() {
+        if (mDataCall != null) {
+            mDataCall.cancel();
+            mDataCall = null;
         }
     }
 

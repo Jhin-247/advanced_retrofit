@@ -3,6 +3,8 @@ package com.example.retrofitassignment.network;
 import android.text.TextUtils;
 import android.view.View;
 
+import androidx.appcompat.content.res.AppCompatResources;
+
 import com.google.gson.annotations.SerializedName;
 
 public class MarsProperty {
@@ -13,7 +15,7 @@ public class MarsProperty {
     public Double price;
 
     public String getId() {
-        return id;
+        return "ID: " + id;
     }
 
     public void setId(String id) {
@@ -21,7 +23,7 @@ public class MarsProperty {
     }
 
     public String getType() {
-        return type;
+        return "Type: " + type;
     }
 
     public void setType(String type) {

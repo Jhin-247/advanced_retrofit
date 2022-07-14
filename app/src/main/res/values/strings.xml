@@ -4,4 +4,10 @@
     <string name="rent_filer">Rent</string>
 
     <string name="buy_filer">Buy</string>
+    <string name="cancel">Cancel</string>
+    <string name="all">All</string>
+
+    <string name="info_id">ID: %1$d</string>
+    <string name="info_type">Type: %1$d</string>
+    <string name="info_price">Price: %1$d</string>
 </resources>

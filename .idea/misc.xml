@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/drawable/ic_broken_image.xml" value="0.156" />
+        <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/drawable/loading_progress.xml" value="0.1625" />
         <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/layout/dialog_loading_new.xml" value="0.2" />
         <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/layout/fragment_list_properties.xml" value="0.2" />
         <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/layout/fragment_property_detail.xml" value="0.2" />
         <entry key="..\:/WorkSpace/FPT/TuanNA21/RetrofitAssignment-master/app/src/main/res/layout/item_real_estate.xml" value="0.2" />

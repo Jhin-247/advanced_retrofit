@@ -2,6 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="property"
             type="com.example.retrofitassignment.network.MarsProperty" />
@@ -21,6 +22,18 @@
             tools:background="@drawable/ic_broken_image" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_type"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:text="@{property.id}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="@{property.visibility()}" />
+
+        <TextView
+            android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

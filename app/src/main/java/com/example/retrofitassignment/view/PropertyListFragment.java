@@ -2,7 +2,6 @@ package com.example.retrofitassignment.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +22,16 @@ import com.example.retrofitassignment.viewmodel.MainViewModel;
 public class PropertyListFragment extends Fragment {
     private RealEstateAdapter mAdapter;
     private RealEstateAdapter.PropertyClick click;
+    private LoadingDialog mLoadingDialog;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         click = (MainActivity) context;
+    }
+
+    public void showDialog() {
+        mLoadingDialog.show();
     }
 
     @Nullable
@@ -38,12 +42,17 @@ public class PropertyListFragment extends Fragment {
         mAdapter = new RealEstateAdapter();
         MainViewModel mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         mBinding.rcvRealEstate.setAdapter(mAdapter);
-
+        mLoadingDialog = new LoadingDialog(requireContext(), false);
+        mLoadingDialog.setListener(() -> {
+            mViewModel.cancelRequest();
+            mLoadingDialog.cancel();
+        });
+        mLoadingDialog.show();
         mAdapter.setClick(click);
 
         mViewModel.getProperties().observe(requireActivity(), marsProperties -> {
             mAdapter.setProperties(marsProperties);
-            Log.i("PropertyListFragment", "onCreateView: " + marsProperties.size());
+            mLoadingDialog.cancel();
         });
 
 

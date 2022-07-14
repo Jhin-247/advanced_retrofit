@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,8 +64,12 @@ public class MainActivity extends AppCompatActivity implements RealEstateAdapter
             case R.id.btn_buy:
                 mViewModel.searchData("buy");
                 break;
+            case R.id.btn_all:
+                mViewModel.searchData("");
+                break;
         }
-        if(getSupportFragmentManager().getFragments().size() > 2){
+        mListPropertyFragment.showDialog();
+        if (getSupportFragmentManager().getFragments().size() > 2) {
             getSupportFragmentManager().popBackStack();
         }
         return super.onOptionsItemSelected(item);
